@@ -1,11 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+// @ts-expect-error CSS side-effect imports are handled by Next.js.
 import "./globals.css";
 import  ThemeProvider  from "@/components/ThemeProvider";
-import Header from "@/components/Header";
-import Background from "@/components/Background";
-import Footer from "@/components/Footer";
+
+
+
 import Script from "next/script";
+import DeveloperShell from "@/components/DeveloperShell";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -70,17 +72,13 @@ export default function RootLayout({
       <body className={`${inter.className} relative min-h-screen overflow-y-auto overflow-x-hidden`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
-          <Background />
-          <div className="relative mx-auto flex max-w-screen-2xl flex-col justify-between gap-4 p-4 lg:gap-6 lg:p-6">
-            <Header />
-            {children}
-          </div>
+          <DeveloperShell>{children}</DeveloperShell>
         </ThemeProvider>
-        <Footer />
+
       </body>
     </html>
   );

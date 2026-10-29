@@ -1,14 +1,6 @@
-"use client";
-
-import Intro from "@/components/Intro";
-import AnimatedSection from "@/components/ui/animated-section";
-import Image from "next/image";
-
-// Enable Incremental Static Regeneration with a revalidation period of 60 seconds
-// export const revalidate = 60;
-
-export default function EducationPage() {
-  const education = [
+import Reveal from "@/components/Reveal";
+import {Heading} from "@/components/IdeParts";
+const education = [
     {
       degree: "Masters of Science",
       major: "Data Science",
@@ -38,46 +30,4 @@ export default function EducationPage() {
       logo: "/assets/img/institution/bssLogo.png",
     },
   ];
-
-  return (
-    <div className="min-h-screen">
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-8">
-          {/* Intro Section */}
-          <div>
-            <Intro />
-          </div>
-
-          {/* Education Section */}
-          <AnimatedSection delay={0.2}>
-            <div className="bg-white dark:bg-black rounded-xl p-6 shadow-md space-y-6">
-              <h2 className="text-2xl font-bold mb-4">Education</h2>
-              {education.map((edu, idx) => (
-                <div
-                  key={idx}
-                  className="border-l-4 border-[#FF5500] pl-4 flex items-start space-x-4"
-                >
-                  <Image
-                    src={edu.logo}
-                    width={50}
-                    height={50}
-                    alt={`${edu.institution} logo`}
-                    className="w-12 h-12 object-contain rounded"
-                  />
-                  <div>
-                    <h3 className="text-xl font-semibold">{edu.degree}</h3>
-                    <p className="text-sm text-muted-foreground">{edu.major}</p>
-                    <p className="text-sm text-muted-foreground">
-                      {edu.institution}
-                    </p>
-                    <p className="text-sm text-muted-foreground">{edu.year}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </AnimatedSection>
-        </div>
-      </div>
-    </div>
-  );
-}
+export default function EducationPage(){return <div className="dev-scroll"><section className="dev-section ide-route"><Reveal><Heading number="03 / LEARNING_LOG" title="Education & foundations." subtitle="// Academic milestones that shaped my approach to engineering."/><div className="ide-timeline">{education.map((e,i)=><article className="ide-entry" key={i}><div className="ide-entry-logo"><img src={e.logo} alt="" /></div><div><div className="ide-entry-meta">{e.year} <span>· record_{String(i+1).padStart(2,"0")}</span></div><h3>{e.degree} — {e.major}</h3><strong>{e.institution}</strong></div></article>)}</div></Reveal></section></div>}

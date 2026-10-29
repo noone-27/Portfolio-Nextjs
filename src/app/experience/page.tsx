@@ -1,15 +1,6 @@
-"use client";
-
-import Intro from "@/components/Intro";
-import AnimatedSection from "@/components/ui/animated-section";
-import Image from "next/image";
-import Link from "next/link";
-
-// Enable ISR
-// export const revalidate = 60;
-
-export default function ExperiencePage() {
-  const experience = [
+import Reveal from "@/components/Reveal";
+import {Heading} from "@/components/IdeParts";
+const experience = [
     {
       role: "Software Engineer",
       company: "Fluide Services, LTD",
@@ -74,54 +65,4 @@ export default function ExperiencePage() {
       href: "https://transdata.biz/",
     },
   ];
-
-  return (
-    <div className="min-h-screen">
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-[2fr_3fr] gap-8">
-          {/* Intro Section */}
-          <div>
-            <Intro />
-          </div>
-
-          {/* Experience Section */}
-          <AnimatedSection delay={0.2}>
-            <div className="bg-white dark:bg-black rounded-xl p-6 shadow-md space-y-6">
-              <h2 className="text-2xl font-bold mb-4">Experience</h2>
-              {experience.map((exp, idx) => (
-                <div
-                  key={idx}
-                  className="border-l-4 border-[#FF5500] pl-4 flex items-start space-x-4"
-                >
-                  <Link href={exp.href} className="block">
-                    <div className="w-12 h-12">
-                      <Image
-                        src={exp.logo}
-                        alt={`${exp.company} logo`}
-                        width={48}
-                        height={48}
-                        className="w-12 h-12 object-contain rounded"
-                      />
-                    </div>
-                  </Link>
-                  <div className="space-y-1">
-                    <h3 className="text-xl font-semibold">{exp.role}</h3>
-                    <p className="text-sm text-muted-foreground">
-                      {exp.company}
-                    </p>
-                    <p className="text-sm text-muted-foreground">
-                      {exp.duration}
-                    </p>
-                    <p className="text-sm text-gray-700 dark:text-gray-300">
-                      {exp.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </AnimatedSection>
-        </div>
-      </div>
-    </div>
-  );
-}
+export default function ExperiencePage(){return <div className="dev-scroll"><section className="dev-section ide-route"><Reveal><Heading number="02 / CAREER_LOG" title="Experience & contributions." subtitle="// A chronological record of the teams and products I've worked with."/><div className="ide-timeline">{experience.map((e,i)=><article className="ide-entry" key={i}><div className="ide-entry-logo"><img src={e.logo.replace("ibex..png","ibex.png")} alt="" /></div><div><div className="ide-entry-meta">{e.duration} <span>· entry_{String(i+1).padStart(2,"0")}</span></div><h3>{e.role}</h3><strong>{e.company}</strong><p>{e.description}</p></div></article>)}</div></Reveal></section></div>}

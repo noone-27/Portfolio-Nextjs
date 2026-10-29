@@ -9,6 +9,8 @@ import {
   Copy,
   Check,
 } from "lucide-react";
+
+// @ts-expect-error Next.js handles global CSS imports at build time.
 import "./developer.css";
 
 const projects = [

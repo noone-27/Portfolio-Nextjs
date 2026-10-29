@@ -1,7 +1,105 @@
 "use client";
 import Reveal from "@/components/Reveal";
-import {useState} from "react";
-import {Heading} from "@/components/IdeParts";
-export default function ContactPage(){const [form,setForm]=useState({name:"",email:"",subject:"",message:""});const [status,setStatus]=useState("");const [busy,setBusy]=useState(false);
-async function submit(e:React.FormEvent){e.preventDefault();setBusy(true);setStatus("");try{const r=await fetch("/api/contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(form)});const data=await r.json();if(!r.ok)throw new Error(data.error||data.message||"Unable to send message");setStatus("Message sent successfully.");setForm({name:"",email:"",subject:"",message:""});}catch(e){setStatus(e instanceof Error?e.message:"Unable to send message");}finally{setBusy(false)}}
-return <div className="dev-scroll"><section className="dev-section ide-route"><Reveal><Heading number="05 / CONTACT_ENDPOINT" title="Let's build something." subtitle="// Have a project in mind? Send a message and let's talk."/><div className="ide-contact-layout"><div className="dev-terminal"><div className="dev-terminal-head">terminal — connect</div><div className="dev-terminal-body"><div><span className="dev-green">➜</span> npm run connect</div><div className="dev-output">Ready to collaborate.<br/>Response channel: contact form<br/>Status: listening...</div></div></div><form className="ide-form" onSubmit={submit}>{(["name","email","subject","message"] as const).map(field=><label key={field}><span>{field} <b>*</b></span>{field==="message"?<textarea required rows={6} value={form[field]} onChange={e=>setForm({...form,[field]:e.target.value})} placeholder="Tell me about your project..."/>:<input required type={field==="email"?"email":"text"} value={form[field]} onChange={e=>setForm({...form,[field]:e.target.value})} placeholder={`Enter ${field}`}/>}</label>)}<button className="dev-primary" disabled={busy} type="submit">{busy?"Sending...":"Send message ↗"}</button>{status&&<p role="status" className="ide-form-status">{status}</p>}</form></div></Reveal></section></div>}
+import { useState } from "react";
+import { Heading } from "@/components/IdeParts";
+export default function ContactPage() {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+  const [status, setStatus] = useState("");
+  const [busy, setBusy] = useState(false);
+  async function submit(e: React.FormEvent) {
+    e.preventDefault();
+    setBusy(true);
+    setStatus("");
+    try {
+      const r = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await r.json();
+      if (!r.ok)
+        throw new Error(data.error || data.message || "Unable to send message");
+      setStatus("Message sent successfully.");
+      setForm({ name: "", email: "", subject: "", message: "" });
+    } catch (e) {
+      setStatus(e instanceof Error ? e.message : "Unable to send message");
+    } finally {
+      setBusy(false);
+    }
+  }
+  return (
+    <div className="dev-scroll">
+      <section className="dev-section ide-route">
+        <Reveal>
+          <Heading
+            number="05 / CONTACT_ENDPOINT"
+            title="Let's build something."
+            subtitle="// Have a project in mind? Send a message and let's talk."
+          />
+          <div className="ide-contact-layout">
+            <div className="dev-terminal">
+              <div className="dev-terminal-head">terminal — connect</div>
+              <div className="dev-terminal-body">
+                <div>
+                  <span className="dev-green">➜</span> npm run connect
+                </div>
+                <div className="dev-output">
+                  Ready to collaborate.
+                  <br />
+                  Response channel: contact form
+                  <br />
+                  Status: listening...
+                </div>
+              </div>
+            </div>
+            <form className="ide-form" onSubmit={submit}>
+              {(["name", "email", "subject", "message"] as const).map(
+                (field) => (
+                  <label key={field}>
+                    <span>
+                      {field} <b>*</b>
+                    </span>
+                    {field === "message" ? (
+                      <textarea
+                        required
+                        rows={6}
+                        value={form[field]}
+                        onChange={(e) =>
+                          setForm({ ...form, [field]: e.target.value })
+                        }
+                        placeholder="Tell me about your project..."
+                      />
+                    ) : (
+                      <input
+                        required
+                        type={field === "email" ? "email" : "text"}
+                        value={form[field]}
+                        onChange={(e) =>
+                          setForm({ ...form, [field]: e.target.value })
+                        }
+                        placeholder={`Enter ${field}`}
+                      />
+                    )}
+                  </label>
+                ),
+              )}
+              <button className="dev-primary" disabled={busy} type="submit">
+                {busy ? "Sending..." : "Send message ↗"}
+              </button>
+              {status && (
+                <p role="status" className="ide-form-status">
+                  {status}
+                </p>
+              )}
+            </form>
+          </div>
+        </Reveal>
+      </section>
+    </div>
+  );
+}

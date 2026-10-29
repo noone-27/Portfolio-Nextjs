@@ -10,8 +10,8 @@ import {
   Check,
 } from "lucide-react";
 
-// @ts-expect-error Next.js handles global CSS imports at build time.
 import "./developer.css";
+import Image from "next/image";
 
 const projects = [
   {
@@ -246,7 +246,12 @@ export default function Home() {
             {projects.map((p, i) => (
               <Link href={p.link} className="dev-project" key={p.name}>
                 <div className="dev-project-image">
-                  <img src={p.image} alt={`${p.name} project preview`} />
+                  <Image
+                    src={p.image}
+                    alt={`${p.name} project preview`}
+                    width={400}
+                    height={225}
+                  />
                   <span className="dev-project-num">0{i + 1}</span>
                 </div>
                 <div className="dev-project-body">
@@ -280,7 +285,9 @@ export default function Home() {
           <div className="dev-skills">
             {skills.map((s) => (
               <div key={s.name} className="dev-skill">
-                <img
+                <Image
+                  width={32}
+                  height={32}
                   className="ide-skill-icon"
                   src={`/icons/${s.icon}`}
                   alt=""
@@ -295,7 +302,7 @@ export default function Home() {
           <div className="dev-section-heading">
             <span>04 / LETS_CONNECT</span>
             <h2>
-              Have an idea? <em>Let's build it.</em>
+              Have an idea? <em>Let&apos;s build it.</em>
             </h2>
             <p>
               Open to interesting projects, collaborations, and conversations

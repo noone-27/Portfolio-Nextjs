@@ -100,6 +100,14 @@ export default function Home() {
             <div className="dev-kicker">
               <span className="dev-dot" /> OPEN TO BUILDING SOMETHING GREAT
             </div>
+            <Image
+              src="/assets/img/profileimg.png"
+              alt="Portrait of Danish Ahmed"
+              width={104}
+              height={104}
+              className="dev-profile-photo"
+              priority
+            />
             <h1>
               Hi, I&apos;m{" "}
               <span>

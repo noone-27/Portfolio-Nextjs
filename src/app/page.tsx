@@ -4,18 +4,11 @@ import { useState } from "react";
 import Link from "next/link";
 import {
   ArrowUpRight,
-  Github,
   Terminal,
-  Code2,
-  FolderGit2,
   Mail,
-  ChevronRight,
   Copy,
   Check,
-  Menu,
-  X,
 } from "lucide-react";
-// @ts-expect-error CSS side-effect imports are handled by Next.js.
 import "./developer.css";
 
 const projects = [
@@ -79,7 +72,6 @@ export default function Home() {
   };
   return (
     <>
-      {" "}
       <div className="dev-scroll">
         <section className="dev-hero dev-section" id="home">
           <div className="dev-lines">
@@ -101,7 +93,7 @@ export default function Home() {
           </div>
           <div className="dev-hero-content">
             <div className="dev-comment">
-              // Hello world, welcome to my corner of the internet.
+              {"// Hello world, welcome to my corner of the internet."}
             </div>
             <div className="dev-kicker">
               <span className="dev-dot" /> OPEN TO BUILDING SOMETHING GREAT
@@ -168,11 +160,11 @@ export default function Home() {
                 <br />
                 <span className="dev-purple">const</span>{" "}
                 <span className="dev-blue">me</span>: Developer = {"{"}
-                <br /> name: <span className="dev-green">"Danish Ahmed"</span>,
+                <br /> name: <span className="dev-green">&quot;Danish Ahmed&quot;</span>,
                 <br /> passion: [<br />{" "}
-                <span className="dev-green">"building"</span>,<br />{" "}
-                <span className="dev-green">"solving"</span>,<br />{" "}
-                <span className="dev-green">"learning"</span>
+                <span className="dev-green">&quot;building&quot;</span>,<br />{" "}
+                <span className="dev-green">&quot;solving&quot;</span>,<br />{" "}
+                <span className="dev-green">&quot;learning&quot;</span>
                 <br /> ],
                 <br /> coffee: <span className="dev-orange">true</span>
                 <br />
@@ -284,7 +276,7 @@ export default function Home() {
             <p>Technologies I use to ship ideas into the real world.</p>
           </div>
           <div className="dev-skills">
-            {skills.map((s, i) => (
+            {skills.map((s) => (
               <div key={s.name} className="dev-skill">
                 <img
                   className="ide-skill-icon"
